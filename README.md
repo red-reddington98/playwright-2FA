@@ -1,1 +1,1 @@
-# playwright-mulit-factor-auth
+# playwright-2fa-auth
