@@ -12,6 +12,7 @@ export default class LoginPage extends BasePage{
     private selectAuthenticatorApproachSection: Locator
     private enterCodeInput: Locator
     private dontAskOnThisDeviceCheckbox: Locator
+    private tryAnotherWayLink: Locator
 
     constructor(page:Page){
         super(page)
@@ -22,6 +23,7 @@ export default class LoginPage extends BasePage{
         this.selectAuthenticatorApproachSection = page.getByRole('link', { name: 'Get a verification code from' })
         this.enterCodeInput = page.getByLabel('Enter code')
         this.dontAskOnThisDeviceCheckbox = page.getByLabel("Don’t ask again on this device")
+        this.tryAnotherWayLink = page.getByRole('button', { name: 'Try another way' })
      }
 
     async navigateToLoginPage(): Promise <void>{
@@ -56,8 +58,10 @@ export default class LoginPage extends BasePage{
     }
 
     async dontAskAgainCheckbox(): Promise <void> {
-        this.dontAskOnThisDeviceCheckbox.uncheck()
+      await this.dontAskOnThisDeviceCheckbox.uncheck()
     }
 
-
+    async clickTryAnotherWayFlow(): Promise <void> {
+        await this.tryAnotherWayLink.click()
+    }
 }
